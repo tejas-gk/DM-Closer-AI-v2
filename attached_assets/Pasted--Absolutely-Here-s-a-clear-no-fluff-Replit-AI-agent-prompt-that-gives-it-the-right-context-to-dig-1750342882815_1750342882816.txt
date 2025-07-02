@@ -1,0 +1,89 @@
+✅ Absolutely! Here’s a clear, no-fluff Replit AI agent prompt that gives it the right context to digest the MVP scope and plan the build tightly around it. This will ensure the AI focuses on exactly what matters — no unnecessary features, no scope bloat.
+
+⸻
+
+🚀 Replit AI Agent Prompt — DMCloser AI MVP Build Plan
+
+⸻
+
+You are a senior software architect and product strategist.
+Your task is to fully digest these confirmed MVP user stories and produce a tight, focused build plan for DMCloser AI — nothing beyond these stories should be included in scope.
+
+👉 Important rules:
+✅ This is a planning task only — do not generate code yet.
+✅ The output should detail how to build only what’s required for this MVP.
+✅ Focus on the agreed stack: React + TypeScript (frontend), Node.js + Express + TypeScript (backend), Supabase (auth + DB), Stripe (billing), Resend (emails), OpenAI API (GPT-4 for replies), Instagram Business API (OAuth + DMs), Replit (hosting).
+✅ Ignore any references to no-code tools (Bubble, Make.com).
+✅ This is for a tight MVP — no extra features, no fancy extras.
+
+⸻
+
+📌 DMCloser AI MVP — Final User Stories
+
+✅ Account & Authentication
+	•	As a user, I want to sign up with email + password so I can create an account.
+	•	As a user, I want to log in securely so I can access my account.
+	•	As a user, I want to log out of my account so I can protect my data.
+	•	As a user, I want to receive a confirmation email when I sign up so I know my account is created.
+
+⸻
+
+✅ Instagram Connection
+	•	As a user, I want to connect my Instagram Business account via OAuth so the platform can manage my DMs.
+	•	As a user, I want to see if my Instagram connection is active or has expired so I can reauthenticate if needed.
+	•	As a user, I want to disconnect or reconnect my Instagram account if I choose.
+
+⸻
+
+✅ AI / Messaging
+	•	As a user, I want to set my preferred tone (e.g. Friendly, Professional, Casual) so replies match my brand.
+	•	As a user, I want to see my AI-generated responses in a message view so I can review them.
+	•	As a user, I want to override or edit AI responses where necessary so I maintain control.
+
+⸻
+
+✅ Conversation Dashboard
+	•	As a user, I want to land on a dashboard that shows recent conversations and reply status so I can manage my DMs.
+	•	As a user, I want to see which replies were auto-sent and which were manual.
+
+⸻
+
+✅ Usage & Quotas
+	•	As a user, I want to see how many AI replies I’ve used this billing cycle so I can manage my plan.
+	•	As a user, I want to be warned via email and in-app when I’m near my usage cap so I can upgrade or adjust.
+	•	As a user, I want to know when my trial is about to end so I can decide on a plan.
+
+⸻
+
+✅ Subscription & Billing
+	•	As a user, I want to start with a free trial so I can test the product risk-free.
+	•	As a user, I want to subscribe to a paid plan so I can continue using the service.
+	•	As a user, I want to see plan options and pricing so I can choose what’s right for me.
+	•	As a user, I want access to a billing portal so I can manage payments and invoices.
+	•	As a user, I want to receive an email confirmation when I subscribe so I have a record.
+
+⸻
+
+✅ Settings & Profile
+	•	As a user, I want to edit my profile (name, email) so my account info is up to date.
+	•	As a user, I want to change my password or auth settings so I can secure my account.
+	•	As a user, I want to delete my account if I no longer want to use the service.
+
+⸻
+
+⚡ Your Deliverable
+
+👉 Produce a structured build plan covering:
+	•	Boilerplate feature coverage
+	•	New features that must be added
+	•	High-level architecture notes
+	•	API + DB changes required
+	•	Risks + dependencies
+	•	Build sequence / phases
+
+👉 Do not generate code or migrations yet.
+👉 Stay within the tight MVP scope defined by these stories.
+
+⸻
+
+If you’d like, I can also generate an ideal sample response from this prompt to guide the AI’s output. Let me know! 🚀

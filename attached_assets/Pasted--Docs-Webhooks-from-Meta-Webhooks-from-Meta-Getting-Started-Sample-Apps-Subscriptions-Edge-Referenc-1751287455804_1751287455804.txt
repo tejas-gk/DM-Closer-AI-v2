@@ -1,0 +1,112 @@
+
+
+Docs
+Webhooks from Meta
+Webhooks from Meta
+Getting Started
+Sample Apps
+Subscriptions Edge
+Reference
+Webhooks from Meta
+
+Webhooks allows you to receive real-time HTTP notifications of changes to specific objects in the Meta social graph. For example, we could send you a notification when any of your app Users change their email address or whenever they comment on your Facebook Page. This prevents you from having to query the Graph API for changes to objects that may or may not have happened, and helps you avoid reaching your rate limit.
+
+Webhooks for Payments and Webhooks for Messenger have slightly differently configuration steps. If you are setting up a Webhook for either of these products, please refer to their respective documents for setup instructions.
+Objects, Fields, and Values
+
+There are many types of objects in the Meta social graph, such as User objects and Page objects, so whenever you configure a Webhook you must first choose an object type. Since different objects have different fields, you must then subscribe to specific fields for that object type. Whenever there's a change to the value of any object field you have subscribed to, we'll send you a notification.
+
+Notifications are sent to you as HTTP POST requests and contain a JSON payload that describes the change. For example, let's say you set up a User Webhook and subscribed to the Photos field. If one of your app's Users uploads a photo, we'd send you a notification that would look like this:
+
+Sample Notification
+{
+  "entry": [
+    {
+      "time": 1520383571,
+      "changes": [
+        {
+          "field": "photos",
+          "value": {
+            "verb": "update",
+            "object_id": "10211885744794461"
+          }
+        }
+      ],
+      "id": "10210299214172187",
+      "uid": "10210299214172187"
+    }
+  ],
+  "object": "user"
+}
+HTTPS Server
+
+Webhooks are sent using HTTPS, so your server must must be able to receive and process HTTPS requests, and it must have a valid TLS/SSL certificate installed. Self-signed certificates are not supported.
+
+App Review
+
+Webhooks does not require App Review. However, in order to receive Webhooks notifications of changes to objects when your app is in Live mode, your app must have been granted relevant permissions to access those objects. See Permissions below.
+
+Permissions
+
+Before an app can be made public, it typically must go through App Review. During review, apps can request approval for specific permissions, which control the types of data the app can access when using the Graph API.
+
+Although the Webhooks product does not require App Review, it does respect permissions. This means that even if you set up a Webhook and subscribe to specific fields on an object type, you won't receive notifications of any changes to an object of that type unless:
+
+your app has been approved for the permission(s) that corresponds to that type of data, and
+the object that owns the data has granted your app permission to access that data (e.g., a User allowing your app to access their Feed)
+Development Mode
+
+Apps in development mode can only receive test notifications initiated through the app dashboard or notifications initiated by people who have a role on the app.
+
+Note that development mode behavior is different for Messenger Webhooks Events. Refer to the Webhooks for Messenger document for details.
+
+Setup
+
+To use Webhooks, you will need to set up an endpoint on a secure (HTTPS) server, then add and configure the Webhooks product in your app's dashboard. The rest of these documents explain how to complete both of these steps.
+
+Ready? Let's get started!
+
+Learn More
+
+Learn how to get notifications when a conversation is passed from one app to another using the Messenger Handover Protocol.
+On This Page
+Webhooks from Meta
+Objects, Fields, and Values
+HTTPS Server
+App Review
+Permissions
+Development Mode
+Setup
+Learn More
+
+Follow us on FacebookFollow us on InstagramFollow us on XFollow us on LinkedInFollow us on YouTube
+Build with Meta
+AI
+Meta Horizon OS
+Social technologies
+News
+Meta for Developers
+Blog
+Success stories
+Support
+Developer support
+Bug tool
+Platform status
+Developer community forum
+Report an incident
+Terms and policies
+Responsible platform initiatives
+Platform terms
+Developer policies
+© 2025 Meta
+About
+Careers
+Privacy Policy
+Cookies
+Terms
+
+
+English (US)
+Was this document helpful?
+YesNo
+Remove

@@ -1,0 +1,98 @@
+
+Docs
+Instagram Platform
+Instagram API with Instagram Login
+Instagram Platform
+Overview
+Webhooks
+Create an App
+Instagram API with Instagram Login
+Migration Guide
+Business Login for Instagram
+Get started
+Messaging
+Welcome message ads
+Conversations API
+Mentions
+Instagram API with Facebook Login
+Publish Content
+Comment Moderation
+Private Replies
+Insights
+Sharing to Feed
+Sharing to Stories
+oEmbed
+Embed Button
+API Reference
+App Review
+Support
+Changelog
+Instagram API with Instagram Login
+The Instagram API with Instagram Login allows Instagram professionals — businesses and creators — to use your app to manage their presence on Instagram. The API can be used to:
+
+Instagram Media Insights are now available for Instagram API with Instagram Login. Learn more.
+
+Comment moderation – Manage and reply to comments on their media
+Content publishing – Get and publish their media
+Media Insights - Get insights on their media
+Mentions – Identify media where they have been @mentioned by other Instagram users
+Messaging – Send and receive messages with customers or people interested in their Instagram account
+Note: This API setup does not require a Facebook Page to be linked to the Instagram professional account.
+
+To ensure consistency between scope values and permission names, we are introducing new scope values for the Instagram API with Instagram login. The new scope values are:
+
+instagram_business_basic
+instagram_business_content_publish
+instagram_business_manage_messages
+instagram_business_manage_comments
+These will replace the existing business_basic, business_content_publish, business_manage_comments and business_manage_messages scope values, respectively.
+
+Please note that the old scope values will be deprecated on January 27, 2025. It is essential to update your code before this date to avoid any disruption in your app's functionality. Failure to do so will result in your app being unable to call the Instagram endpoints.
+
+Limitations
+This API setup cannot access ads or tagging.
+Next Steps
+Next, read the Overview to learn about the core concepts, components, and usage requirements for this API.
+
+See Also
+Instagram API with Facebook Login
+Instagram Messaging with Messenger Platform
+Instagram professional accounts
+On This Page
+Instagram API with Instagram Login
+Limitations
+Next Steps
+See Also
+
+Follow us on FacebookFollow us on InstagramFollow us on XFollow us on LinkedInFollow us on YouTube
+Build with Meta
+AI
+Meta Horizon OS
+Social technologies
+News
+Meta for Developers
+Blog
+Success stories
+Support
+Developer support
+Bug tool
+Platform status
+Developer community forum
+Report an incident
+Terms and policies
+Responsible platform initiatives
+Platform terms
+Developer policies
+© 2025 Meta
+About
+Careers
+Privacy Policy
+Cookies
+Terms
+
+English (US)
+
+English (US)
+Was this document helpful?
+YesNo
+Remove

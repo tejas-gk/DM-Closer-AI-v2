@@ -1,0 +1,65 @@
+✅ Great clarity — let’s get this right. Below is a Replit AI prompt that will first generate a landing page build plan (no code yet). Once you approve the plan, you can ask the AI to produce the code.
+
+⸻
+
+🚀 Replit AI Agent Prompt — DMCloser AI Landing Page Build Plan
+
+⸻
+
+You are a senior front-end engineer and SaaS UX designer.
+Your task is to produce a clear, structured build plan for the landing page of DMCloser AI.
+
+👉 Important:
+✅ This is a planning-only task. No code should be generated yet.
+✅ Once I approve the plan, I will authorise you to generate code.
+✅ Your plan must stay tightly focused on the defined MVP journey below.
+
+⸻
+
+📌 Product & User Flow Context
+
+DMCloser AI helps Instagram business accounts automate their DMs using AI (GPT-4), preserving their brand tone.
+
+Landing page user journey:
+1️⃣ Visitor lands on the page → sees value proposition + CTA
+2️⃣ Clicks “Start Free Trial” → taken to signup/login (Supabase Auth)
+3️⃣ After auth, redirected to Stripe checkout → starts 7-day free trial (no immediate charge)
+4️⃣ On payment success, redirected to dashboard to connect Instagram
+
+⸻
+
+🛠 Tech Stack
+	•	React + TypeScript
+	•	Tailwind CSS (with shadcn/ui or Radix UI where needed)
+	•	Wouter (routing)
+	•	React Hook Form + Zod (if forms required)
+	•	Vite (build tool)
+
+⸻
+
+🎯 Deliverable — The Plan
+
+👉 Provide a clear, structured plan covering:
+✅ Page structure (sections/components required)
+✅ Routing + flow triggers (what happens on CTA click etc.)
+✅ Integration points (where auth + Stripe connect)
+✅ Design/UX notes (layout, responsiveness, visual style)
+✅ Risks or considerations
+
+👉 DO NOT produce any code until I explicitly approve the plan.
+
+⸻
+
+⚠ Key Rules
+	•	Stay within the defined MVP scope.
+	•	No extra features or scope creep.
+	•	Keep it simple, clean, and easy to implement.
+
+⸻
+
+✅ When you’re ready, produce this plan.
+I will review and authorise you to proceed to code generation if the plan is approved.
+
+⸻
+
+If you want, I can mock what a good plan output would look like, so you know what to expect — just say the word! 🚀

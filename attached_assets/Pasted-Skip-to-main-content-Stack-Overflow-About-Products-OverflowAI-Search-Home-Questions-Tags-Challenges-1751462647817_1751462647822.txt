@@ -1,0 +1,489 @@
+Skip to main content
+Stack Overflow
+About
+Products
+OverflowAI
+Search…
+Home
+Questions
+Tags
+Challenges
+New
+Chat
+Articles
+Users
+Jobs
+Companies
+Collectives
+Communities for your favorite technologies. Explore all Collectives
+
+Teams
+
+Ask questions, find answers and collaborate at work with Stack Overflow for Teams.
+
+ 
+
+
+The Callback URL or Verify Token couldn't be validated. Please verify the provided information or try again later
+Asked 5 years, 4 months ago
+Modified 28 days ago
+Viewed 20k times
+ Part of AWS Collective
+12
+
+I have been following the facebook bot setup guide and have setup a callback url that is running on an EC2 instance.
+
+I am getting an error (see title of this) when trying to validate the callback url and verify token.
+
+https://360.finance:1337/webhook is my webhook and the verify token is the same in my environment variable and in my facebook setting.
+
+I set up SSL using LetsEncrypt and from what I can tell, the SSL is not showing as self signed so it looks to be working correctly (please note I'm new to all of this)
+
+Checked at https://www.ssllabs.com/ssltest/analyze.html?d=360.finance&hideResults=on and all looks correct.
+
+I have also included the facebook page token as an environment variable and included in my index.js file
+
+I have tested netcat / telnet into that port on my ec2 ip and it is succeeding
+
+amazon-ec2amazon-route53lets-encryptfacebook-messenger-bot
+Share
+Improve this question
+Follow
+edited Mar 5, 2020 at 22:15
+asked Mar 5, 2020 at 11:56
+Andy Johnson's user avatar
+Andy Johnson
+12111 gold badge11 silver badge55 bronze badges
+For anyone with the same challenge. The fix was to set express.js up as https. The facebook bot article doesn't mention this in the setup. – 
+Andy Johnson
+ CommentedMar 6, 2020 at 3:33
+1
+I have the same problem. Based on what logged in my server, it even didn't call my url. But when I test my url, it works in browser. – 
+Bagusflyer
+ CommentedJun 1, 2023 at 9:22
+Add a comment
+13 Answers
+Sorted by:
+
+Highest score (default)
+17
+
+You must return an http response of the hub.challenge token as a plain text.
+
+Share
+Improve this answer
+Follow
+edited Aug 23, 2022 at 17:22
+answered Aug 23, 2022 at 17:22
+Brightius Kalokola's user avatar
+Brightius Kalokola
+19122 silver badges55 bronze badges
+6
+Why they doesn't mention that clearly?! – 
+Tariq
+ CommentedSep 25, 2022 at 9:25
+1
+The call from verify webhook even not reach my website. My url webhook url works fine in browser. The only think I suspect is I'm using the self-signed certificate. Is this the cause? – 
+Bagusflyer
+ CommentedJun 1, 2023 at 9:33
+I use let's encrypt and it works fine. It's not supposed to be an issue with self signed certificates. – 
+Brightius Kalokola
+ CommentedApr 22, 2024 at 12:47
+in my case it uses hub_challenge (with underscore instead of dot) – 
+topher
+ CommentedAug 14, 2024 at 6:29
+1
+Just to clarify the obvious, hub_challenge is not a string value, but an input parameter available in the incoming request. You return it like return response(request('hub_challenge')); in Laravel for example. – 
+dotNET
+ CommentedAug 17, 2024 at 5:28
+Show 1 more comment
+5
+
+We need to update the following on Facebook app settings page before adding The Callback URL or Verify Token.
+
+Privacy Policy URL
+Category
+App Icon (1024*1024)
+Its weird that facebook doesn't point our exact error.
+
+Share
+Improve this answer
+Follow
+answered Jul 28, 2020 at 16:12
+Shaffiulla Khan's user avatar
+Shaffiulla Khan
+10.4k1616 gold badges5757 silver badges5454 bronze badges
+5
+I update all 3. Still facing the same issue – 
+Vigneswaran A
+ CommentedDec 8, 2021 at 2:26
+Add a comment
+5
+
+Do not use ngrok or localtunnel. I tried both, with no luck.
+
+If you really want your local dev server to authenticate - you can port forward over ssh to your public faced server.
+
+ssh -R 4000:localhost:4000 root@your-server-ip
+
+This way you can setup nginx to reverse proxy 443 to 4000 and handle ssl with certbot
+
+sample config for nginx reverse proxy (before running certbot)
+
+server {
+    server_name my-own-domain;
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+    listen 80;
+
+location / {
+    proxy_pass http://localhost:4000/;
+  }
+}
+So you "only" need:
+
+Your own domain
+Your own server
+nginx
+certbot
+SSH Server
+And now you have your own private ngrok replacement
+
+Share
+Improve this answer
+Follow
+answered Dec 14, 2022 at 16:36
+yeya's user avatar
+yeya
+2,27011 gold badge2626 silver badges4040 bronze badges
+4
+Why would they deny ngrok? Such a bad dev experience – 
+clamentjohn
+ CommentedFeb 13, 2023 at 5:44
+1
+No idea. It feels like they want to raise the bar and let only medium to large enterprise to use the API. – 
+yeya
+ CommentedFeb 13, 2023 at 9:30
+If you're using Laravel, you can try github.com/beyondcode/expose. Similar to ngrok, but it works with Meta. – 
+dr_ermio
+ CommentedSep 24, 2024 at 12:00
+Add a comment
+1
+
+check you callback server, if it is running or not ?
+
+the callback and token comes from your server.
+
+Share
+Improve this answer
+Follow
+answered Mar 2, 2022 at 5:50
+Aziz ullah's user avatar
+Aziz ullah
+11911 silver badge88 bronze badges
+Add a comment
+1
+
+For python users you need to use a dot not underscore. I don't get it when I use the underscore version Facebook API cant access challenge but when I replicate the same GET request with postman I can access the challenge.
+
+# Wrong way
+challenge = request.GET['hub_challenge']
+
+# Right way
+challenge = request.GET['hub.challenge']
+return HttpResponse(challenge)
+Share
+Improve this answer
+Follow
+answered Nov 10, 2022 at 19:51
+mustafa candan's user avatar
+mustafa candan
+87699 silver badges2121 bronze badges
+Add a comment
+1
+
+After 2-3 hour debugging, my case was returning "\"1412656657\"" instead of "1412656657".
+
+Fixed with returning the value inside Content()
+
+public ContentResult Get()
+{
+    // validate token
+    // get hub.challenge from query string
+    var hubChallenge = Request.Query["hub.challenge"];
+  
+    return Content(hubChallenge, "text/plain");
+}
+Share
+Improve this answer
+Follow
+answered Mar 18, 2024 at 20:29
+rekarpcpro's user avatar
+rekarpcpro
+3566 bronze badges
+Add a comment
+0
+
+this fixes my problem using built-in port in vscode with visibility public https://stackoverflow.com/a/78599052/14721819
+
+Share
+Improve this answer
+Follow
+answered Jul 18, 2024 at 7:06
+Flamingo's user avatar
+Flamingo
+39511 silver badge1818 bronze badges
+Add a comment
+0
+
+It was already mentioned. But quick question if you are confident that it should work:
+
+IT WILL NOT WORK WITH NGROK.
+
+Share
+Improve this answer
+Follow
+answered Jul 20, 2024 at 17:34
+Andriy's user avatar
+Andriy
+45988 silver badges1919 bronze badges
+Yes, it works with Ngrok. My problem was the method, that I was respond only to POST, and to save webhook, meta make a GET request – 
+gabrieloliveira
+ CommentedJun 4 at 19:25
+Add a comment
+0
+
+In my case, I knew that ngrok will not work - so I deployed application to Digital Ocean, and I got default domain from the DO: https://<projectname>.ondigitalocean.app/whatsapp/webhook
+
+I was struggling for 2 hours, until I went to "Webhook" tab (in the left sidebar) and tried to call my webhook.
+
+I got the message: url <url> has been identified as malicious and/or abusive
+
+So I bought the domain and it worked.
+
+Share
+Improve this answer
+Follow
+answered Aug 22, 2024 at 21:28
+Andriy's user avatar
+Andriy
+45988 silver badges1919 bronze badges
+Add a comment
+0
+
+This is how it worked for me in FastAPI with Ngrok
+
+@router.get("/whatsapp-webhook")
+async def whatsapp_webhook(request: Request,
+                           db: AsyncSession = Depends(dependencies.get_db)):
+    return int(request.query_params.get("hub.challenge"))```
+Share
+Improve this answer
+Follow
+answered Aug 27, 2024 at 0:35
+Elyasomer's user avatar
+Elyasomer
+11311 silver badge99 bronze badges
+Add a comment
+0
+
+You need to return a request param back sent by facebook called hub.challenge, code below will show you how to do this in a safeway, if if below is not present so any user can set a webhook in your server, it could lead to bugs as duplicate operations like sending duplicate messages etc.
+
+@GetMapping
+public ResponseEntity webhookSignUp(@RequestParam("hub.challenge") String validator, @RequestParam("hub.verify_token") String wppPermanantToken){
+    if(wppPermanantToken.equals(tokeYouSet)){
+        return ResponseEntity.ok().body(validator);
+    }else{
+        return ResponseEntity.badRequest().build();
+    }
+}
+Share
+Improve this answer
+Follow
+answered Aug 30, 2024 at 14:22
+Davi Américo's user avatar
+Davi Américo
+2144 bronze badges
+Add a comment
+0
+
+The issue seems to be the data type of the returned hub.challenge variable. Make sure you return it as an int or any numerical datatype instead of a string.
+
+Share
+Improve this answer
+Follow
+answered Oct 3, 2024 at 7:07
+Munashe Nzira's user avatar
+Munashe Nzira
+2133 bronze badges
+Add a comment
+0
+
+Make sure your webhook URL is accessible via GET method for verification, as Facebook/WhatsApp sends a GET request during setup.
+
+To respond during webhook verification, you simply send back the hub.challenge value you received.
+
+Replace 'YOUR_VERIFY_TOKEN' with your actual token.
+
+In your Laravel controller, handle the verification like this:
+
+public function handle(Request $request)
+{
+    $verifyToken = 'YOUR_VERIFY_TOKEN'; // Set your verify token
+
+    $mode = $request->query('hub_mode');
+    $token = $request->query('hub_verify_token');
+    $challenge = $request->query('hub_challenge');
+
+    if ($mode === 'subscribe' && $token === $verifyToken) {
+        // Respond with the challenge token
+        return response($challenge, 200);
+    } else {
+        return response('Verification failed', 403);
+    }
+}
+WhatsApp Webhook Received Payload
+
+{"hub_mode":"subscribe","hub_challenge":"124607075","hub_verify_token":"some_token_value"}
+Note: PHP converts periods (.) to underscores (_) in parameter names.
+
+You can refer to the official Facebook documentation for more details: Facebook Webhooks Verification.
+
+Share
+Improve this answer
+Follow
+edited Jun 4 at 12:53
+answered Jun 4 at 12:46
+Vishal Vaghasiya's user avatar
+Vishal Vaghasiya
+2,12033 gold badges1717 silver badges2121 bronze badges
+Add a comment
+Your Answer
+ 
+
+  
+Sign up or log in
+Post as a guest
+Name
+Email
+Required, but never shown
+
+By clicking “Post Your Answer”, you agree to our terms of service and acknowledge you have read our privacy policy.
+
+Start asking to get answers
+
+Find the answer to your question by asking.
+
+Explore related questions
+
+amazon-ec2amazon-route53lets-encryptfacebook-messenger-bot
+See similar questions with these tags.
+
+AWS
+Collective
+ This question is in a collective: a subcommunity defined by tags with relevant content and experts.
+The Overflow Blog
+Reliability for unreliable LLMs
+Programming problems that seem easy, but aren't, featuring Jon Skeet
+Featured on Meta
+Community Asks Sprint Announcement - June 2025
+Labs experiment launch: stackoverflow.ai
+2025 Community Moderator Election Results
+Linked
+6
+facebook webhook url error has been identified as malicious and/or abusive
+0
+I created a controller in spring boot and used ngrok to make it public to configure Whatsapp's Cloud API but Whatsapp does not even hits my controller
+Related
+14
+Facebook Messenger API "URL COULD NOT BE VALIDATED"
+1
+Messenger requires secure callback url
+1
+Messenger webhook error (curl_errno = 28)
+1
+The URL provided is not whitelisted for messenger extensions
+3
+Azure Bot Service Facebook Messenger Callback URL gives 404
+1
+The URL couldn't be validated Facebook Messenger Chat Bot
+0
+Invalid key found in param call_to_actions for Facebook messenger on bot framework using node.js
+1
+AWS Lex and Facebook Messenger Integration Not Working
+0
+Facebook Messengerbot python ( The Callback URL or Verify Token couldn't be validated. Please verify the provided information or try again later.)
+0
+facebook messenger curl request returns <Response [400]>
+Hot Network Questions
+Remember The Names
+Performance of two inverse square root expressions (accounting for CPU pipelining)
+In which episode of the 1980's show Knightmare did a contestant say they loved the wall monster?
+Edge crease not working
+Writing tab spaces to an external file with `newfile`
+How can I turn on a third light along with either of two switched light circuits?
+XRDP poor performance for streaming videos
+How can I convert LaTeX to some text format preserving the section numbering?
+How do I calculate the short-circuit current of this power supply circuit?
+How to prevent media icons in Firefox tabs from changing the tab width, looking messy, and being accidentally clicked?
+Analog story about using Hell as an energy source
+Proving that a pushforward measure from a uniform distribution is its uniform distribution
+A simple checksum for java.math.BigInteger
+gdalwarp losing brightness with PGM
+Using Qt6 for minimal QGIS Plugin migration
+Is intermittent power outage an indication of a failing GFCI outlet?
+Does revealing the difference between two xor operations always reveal enough to compromise confidentiality?
+How do I autosource path and venvs in /bin/sh (posix sh) for docker pods
+Notation for Trill
+Regarding the recent AI ruling (Anthropic). Did it rule on wheter it is fair use to "pirate" books for the sole and express purpose of training AI
+Is birthright citizenship protected under the Fourteenth Amendment?
+What latitude of Earth will avoid mountain collisions for a flying island?
+Why didn't the title of the movie appear at the beginning of the movie “Sling Blade” (1996)?
+Confused as to whether dative or ablative
+ Question feed
+
+
+
+
+
+Stack Overflow
+Questions
+Help
+Chat
+Products
+Teams
+Advertising
+Talent
+Company
+About
+Press
+Work Here
+Legal
+Privacy Policy
+Terms of Service
+Contact Us
+Cookie Settings
+Cookie Policy
+Stack Exchange Network
+Technology
+Culture & recreation
+Life & arts
+Science
+Professional
+Business
+API
+Data
+Blog
+Facebook
+Twitter
+LinkedIn
+Instagram
+Site design / logo © 2025 Stack Exchange Inc; user contributions licensed under CC BY-SA . rev 2025.7.2.30627
+
+We Care About Your PrivacyWe and our 5 partners store and access personal data, like browsing data or unique identifiers, on your device. Selecting Accept all cookies enables tracking technologies to support the purposes shown under we and our partners process data to provide. Selecting Necessary cookies only or withdrawing your consent will disable them. If trackers are disabled, some content and ads you see may not be as relevant to you. You can resurface this menu to change your choices or withdraw consent at any time by clicking the Customize Settings link on the bottom of the webpage . Your choices will have effect within our Website. For more details, refer to our Privacy Policy.Cookie Policy.
+We and our partners perform the following based on your settings:
+Use precise geolocation data. Actively scan device characteristics for identification. Store and/or access information on a device. Understand audiences through statistics or combinations of data from different sources. Create profiles to personalise content. Develop and improve services. Use limited data to select content. Measure content performance. Use limited data to select advertising. Measure advertising performance. Create profiles for personalised advertising. Use profiles to select personalised advertising. Use profiles to select personalised content.List of Partners (vendors)
+
+Accept all cookies
+Necessary cookies only
+Customize Settings

@@ -1,0 +1,14 @@
+🎯 You are acting as a senior QA engineer.
+Your task is to:- Design and specify E2E tests for the following epic or milestone:  - Reference `/documents/knowledge-base.md` for epic or milestone details.
+👉 Your E2E plan must include:1️⃣ Full user journey flows to test2️⃣ Expected outcomes at each step3️⃣ Edge cases and failure scenarios4️⃣ Notes on test data or environment setup5️⃣ Assumptions or clarifications required
+⚠ **Guardrails:**- Review all project knowledge and codebase context before proposing tests.- Do not generate test code at this stage — plan only.- Wait for approval before implementing tests.
+📌 Append the plan to `/documents/knowledge-base.md` under the relevant epic/milestone.
+
+
+🎯 You are acting as a senior engineer and test implementer.
+Your task is to:- Design and specify unit and integration tests and Design and specify E2E tests for the supabase auth feature:  - Reference the living project knowledge base in `/documents/knowledge-base.md` for feature name, description, and context (unless I specify otherwise).
+👉 Your test plan must include:1️⃣ Unit tests — what internal logic or components require isolated verification2️⃣ Integration tests — how this feature interacts with other components, services, or external APIs3️⃣ Edge cases that should be covered4️⃣ Notes on test data, mocks, or stubs required5️⃣ Any assumptions or open questions
+
+👉 Your E2E plan must include:1️⃣ Full user journey flows to test2️⃣ Expected outcomes at each step3️⃣ Edge cases and failure scenarios4️⃣ Notes on test data or environment setup5️⃣ Assumptions or clarifications required
+⚠ **Guardrails:**- Before starting:  - Check `/documents/knowledge-base.md` and related docs (feature definitions, epic plans) for full context.  - If a codebase exists, review relevant parts before proposing tests.- Do not generate code or test code until this plan is approved.- Focus on test design and rationale only.
+📌 After completing this plan:- Append it to `/documents/knowledge-base.md` under the relevant feature.

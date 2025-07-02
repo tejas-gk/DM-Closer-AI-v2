@@ -1,0 +1,207 @@
+
+Docs
+Instagram Platform
+Create an App
+Instagram Platform
+Overview
+Webhooks
+Create an App
+Instagram API with Instagram Login
+Instagram API with Facebook Login
+Publish Content
+Comment Moderation
+Private Replies
+Insights
+Sharing to Feed
+Sharing to Stories
+oEmbed
+Embed Button
+API Reference
+App Review
+Support
+Changelog
+The following content is from the Meta App Development documentation. Please refer to the Development documentation to learn more about the Meta App Development process.
+
+Create a Meta App for Instagram Platform
+This guide shows you how to create and customize a Meta app for your Instagram app in the App Dashboard.
+
+Before you Start
+This guide assumes that you have read and implemented the requirements for creating an app with Meta.
+
+Add to an existing app
+If you are adding Instagram to an existing app, please start with Step 6.
+
+1. Start the app creation process
+There are a number of ways to create an app.
+
+If you just came from the registration flow, click the Create First App button
+If you are on the App Dashboard, click Create App in the upper right
+If you are on the dashboard for an existing app and want to create a new app, select the dropdown menu in the upper left, and click the Create New App button
+Launch the Meta App Dashboard
+Step 2: Connect a business
+You're required to connect your app to a business that has completed Business Verification before you can publish your app. However, you can connect a business now or at any time during the development process by clicking App settings > Basic in the left-side menu.
+
+Select an option and click Next.
+Learn more about Business Verification. 
+
+Step 3: Select your use case
+To create an app that can access the Instagram product follow these steps:
+
+Select the Other use case.
+Click the Next.
+Step 4: Select your app type
+Your app must be a business type app to be able to add the Instagram product.
+
+Select Business.
+Click Next.
+Step 5: Add app details
+Add some details about your app.
+
+Add an app name that will appear in the app dashboard.
+Add contact email that Meta will use to contact you about your app.
+Click Next.
+You will be redirected to the app dashboard for your new app with products you can add to your app.
+
+Step 6. Add the Instagram product to your app
+Add the Instagram product to your app by following these steps:
+
+Scroll until you see the Instagram product. This allows Allow creators and businesses to manage messages and comments, publish content, track insights, hashtags and mentions.
+
+Click Set up.
+
+API setup with Instagram login is automatically added to your app. This allows your app users to log in to your app using their Instagram credentials. This setup allows you to build an app that can publish to Instagram, manage comments on Instagram media, and send and receive messages from people interested in your app user's Instagram social media using the Instagram API.
+
+If you are building an app for a business that uses an Instagram Professional account that is linked to a Facebook Page select the API setup with Facebook login. This setup allows you to build an app that can publish content to Instagram and manage comments on Instagram media, for product tagging, Partnership Ads, and get metrics. Continue to the API Setup with Facebook Login Developer Documentation to complete the set up.
+
+Step 7. Generate access tokens
+Assign an Instagram account to get access tokens for testing Instagram API calls and webhooks subscriptions.
+
+Add an Instagram account. This account must be public. Multiple accounts can be added for multiple testers.
+You will be prompted to login to your Instagram account.
+You can add or remove accounts at any time by clicking App Roles > Roles or Instagram > API Setup with Instagram login in the left-side menu.
+
+Step 8. Configure webhooks
+Meta Webhooks allow you to receive real-time HTTP notifications of changes to specific objects in the Meta social graph. To use webhooks, please provide a callback URL for your app.
+
+Click Configure.
+Add your Callback URL.
+Add your Verify token.
+Click Save.
+Click Manage to unsubscribe or change testing and subscription versions.
+By default you are subscribed to all available webhooks for the Instagram product:
+
+comments
+live_comments
+message_reactions
+messages
+messaging_optins
+messaging_postbacks
+messaging_referral
+messaging_seen
+Learn more about webhooks. 
+
+Step 9. Set up Instagram business login
+Provide a secure way for your app users to give your app permissions to access data with business login.
+
+Click Set up in the 3. Set up Instagram business login section
+Add your Redirect URL in the popup and click Save
+Copy and paste the Embed URL in an anchor tag or button on your app or website to launch business login.
+Click Business login settings
+Add additional OAuth Redirect URIs, if applicable
+Add your Deauthorize callback URL
+Add your Data deletion request URL
+Click Save
+Learn more about business login. 
+
+Step 10. Complete App Review
+Instagram requires successful completion of the App Review process before your app can access live data. Submit your App Review request when you're ready.
+
+If you are ready now complete the following steps:
+
+Click the chevron to right of Complete App Review.
+Click Go to App Review.
+A pop-up appears with a list of the Requirements for App Review:
+
+Confirm that your app can be loaded and tested externally.
+Provide clear use case details and describe step-by-step how a person uses your app.
+Tell us how your case of Instagram permissions follows established usage guidelines. You will need to upload screen recordings that demonstrate how your app will use each permission.
+Click Continue.
+A pop-up appears that shows the required and recommended permissions that have been added by default for the Instagram product. If your app will not need a recommended permission, uncheck it.
+
+Permissions
+instagram_business_basic
+instagram_business_content_publish
+instagram_business_manage_comments
+instagram_business_manage_insights
+instagram_business_manage_messages
+Features
+Human Agent 
+If you have requested the instagram_business_manage_messages permission, the Human Agent feature is added automatically.
+Note: If you are adding Instagram to an existing app that has been approved for Advanced Access you may be automatically granted Advanced Access to Instagram business permissions.
+
+You can add and remove permissions and features at any time during the development process.
+
+Click Continue and you will be redirected to the App Review > Requests menu item in the left-side menu.
+If you want to add more products or are not yet ready to submit for App Review, you can return to the app dashboard to submit at a later date.
+
+Next Steps
+API Integration Helper – Use the API Integration Helper in the App Dashboard to send a test message using the API.
+
+When you need to request Advanced Access, visit the Instagram Platform App Review guide to learn how to submit your app for Meta App Review.
+
+See Also
+Learn more about Meta app development, review, permissions, and more with the following developer documents:
+
+Business login for Instagram
+Content Publishing API
+Comment Moderation API
+Instagram Messaging API
+Logos and Trademarks
+Permissions Reference
+Webhooks from Meta
+On This Page
+Create a Meta App for Instagram Platform
+1. Start the app creation process
+Step 2: Connect a business
+Step 3: Select your use case
+Step 4: Select your app type
+Step 5: Add app details
+Step 6. Add the Instagram product to your app
+Step 7. Generate access tokens
+Step 9. Set up Instagram business login
+Step 10. Complete App Review
+Next Steps
+See Also
+
+Follow us on FacebookFollow us on InstagramFollow us on XFollow us on LinkedInFollow us on YouTube
+Build with Meta
+AI
+Meta Horizon OS
+Social technologies
+News
+Meta for Developers
+Blog
+Success stories
+Support
+Developer support
+Bug tool
+Platform status
+Developer community forum
+Report an incident
+Terms and policies
+Responsible platform initiatives
+Platform terms
+Developer policies
+© 2025 Meta
+About
+Careers
+Privacy Policy
+Cookies
+Terms
+
+English (US)
+
+English (US)
+Was this document helpful?
+YesNo
+Remove

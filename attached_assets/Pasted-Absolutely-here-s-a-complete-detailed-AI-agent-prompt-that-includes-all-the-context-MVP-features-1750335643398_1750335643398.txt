@@ -1,0 +1,172 @@
+Absolutely — here’s a complete, detailed AI agent prompt that includes all the context, MVP features, functionalities, and architecture, ready to paste into Replit AI. This will let the agent digest the information fully and prepare a smart, structured build plan:
+
+⸻
+
+🚀 Replit AI Agent Prompt — DMCloser AI MVP Planning
+
+⸻
+
+You are an expert software architect and product strategist.
+Your mission is to digest all of the information below, including discovery documents, feature requirements, boilerplate analysis, and architectural choices, and produce a structured build plan for the MVP of DMCloser AI.
+
+👉 Key points:
+✅ This is a planning task. Do not produce code.
+✅ Ignore all references to Bubble, Make.com, or no-code tools. We are using Replit + the Node/React boilerplate provided.
+✅ Focus on aligning the plan with our agreed stack and product goals.
+✅ Be precise about what the boilerplate already covers and what needs to be built.
+
+⸻
+
+📌 Product Overview
+
+Name: DMCloser AI
+Core Value: Automate Instagram DM replies using GPT-4 while preserving brand tone, reducing response time, and improving conversion rates.
+
+⸻
+
+🎯 Primary Objectives
+	•	Allow Instagram business owners to handle 10x more DMs without extra staff.
+	•	Enable customers to get instant, helpful, on-brand replies.
+	•	Build a subscription-based SaaS model targeting the Instagram commerce market.
+
+⸻
+
+👤 Target Users
+	•	Small–medium Instagram business accounts (1K–100K followers).
+	•	Receive 20+ DMs/day.
+	•	Tech-comfortable, value automation, budget-conscious but ROI-focused.
+
+⸻
+
+⚡ MVP Core Features
+
+✅ Instagram Account Connection
+	•	OAuth integration with Instagram Business API
+	•	Verify account, manage permissions
+	•	1 account per user (initially)
+
+✅ Automated Response Engine
+	•	GPT-4 powered response generation
+	•	Predefined tone settings (Professional, Friendly, Casual)
+	•	Context-aware replies (using conversation history)
+	•	Configurable triggers/rules
+	•	Compliant with 24-hour Instagram response window
+
+✅ Conversation Management
+	•	Real-time inbox (active conversations, threading, read/unread status)
+	•	Manual override option for AI replies
+
+✅ Tone Configuration
+	•	Tone presets + custom brand voice
+	•	Response template library
+	•	A/B testing for tone effectiveness
+
+✅ Usage Analytics
+	•	Response time metrics
+	•	AI vs manual ratios
+	•	Conversation volumes
+	•	Basic ROI calculation
+
+✅ Billing & Subscription
+	•	Tiered plans:
+	•	Starter: €39/mo, 500 replies
+	•	Pro: €89/mo, 1,500 replies
+	•	7-day free trial
+	•	Usage tracking (1 reply = 1 usage)
+	•	Stripe billing + customer portal
+	•	Usage cap enforcement + upgrade prompt
+
+⸻
+
+🛠 Tech Stack (Confirmed)
+	•	Frontend: React + TypeScript + Tailwind + shadcn/ui + Wouter + TanStack Query
+	•	Backend: Node.js + Express + TypeScript
+	•	Database: Supabase (PostgreSQL, auth, RLS)
+	•	Auth: Supabase Auth (email/password + OAuth if needed)
+	•	Payments: Stripe (checkout + portal)
+	•	Emails: Resend (for transactional emails)
+	•	AI: OpenAI API (GPT-4)
+	•	Hosting: Replit
+
+⸻
+
+💻 Boilerplate Baseline
+
+✅ Already provides:
+	•	Supabase Auth (email/password, Google OAuth scaffolded)
+	•	Stripe subscription + customer portal
+	•	Profile management (linked to Stripe customer ID)
+	•	Membership page, pricing tiers, checkout sessions
+	•	Responsive UI with shadcn/ui + Tailwind
+	•	Protected routes, session handling
+	•	Basic API structure (Express routes)
+
+⸻
+
+🚧 MVP Features Needing Build or Extension
+
+❌ Instagram Business API integration (OAuth, DM read/send)
+❌ GPT reply engine integration + tone presets + context awareness
+❌ Usage tracking logic (1 reply = 1 usage, quota enforcement)
+❌ Conversation UI (inbox, threading, manual override)
+❌ Tone config UI + A/B testing capability
+❌ Analytics dashboard (volume, AI/manual ratio, ROI)
+❌ Upgrade prompt when cap is reached
+❌ API security hardening + rate limiting
+
+⸻
+
+🛡 Risks / Dependencies
+	•	Instagram API approval process, rate limits
+	•	GPT-4 cost scaling with DM volume
+	•	No test suite or CI/CD — high deployment risk
+	•	MemoryStore for sessions = no persistence
+	•	No rate limiting / API auth middleware yet
+	•	Stripe webhook handling incomplete
+
+⸻
+
+🗺 Your Task
+
+👉 Digest all of the above.
+
+👉 Produce a structured plan that includes:
+
+⸻
+
+📌 Summary
+
+One-paragraph summary of your recommended build approach.
+
+✅ Boilerplate Feature Coverage
+
+List the MVP features already scaffolded or implemented.
+
+🚧 Gaps & Required Additions
+
+List the features that need to be added/extended, and the suggested technical approach for each.
+
+⚙️ Architectural Notes
+
+Explain how to:
+	•	Integrate Instagram API (OAuth, message polling/sending)
+	•	Handle GPT-4 replies with tone/context
+	•	Enforce quotas (1 reply = 1 usage)
+	•	Tie usage to billing tiers
+	•	Update DB schema + API endpoints
+
+🛡 Risks & Mitigations
+
+Call out risks + how to reduce them (security, API limits, scaling).
+
+🗺 Build Sequence Plan
+
+Propose phases/milestones for development, aligned to MVP phases.
+
+⸻
+
+👉 Important: DO NOT produce code or migrations yet. Focus only on analysis and planning.
+
+⸻
+
+If you’d like, I can generate an ideal example of what this output should look like to guide the agent’s response. Let me know!
